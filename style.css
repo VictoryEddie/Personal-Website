@@ -1024,4 +1024,42 @@ option {
   .form-row {
     grid-template-columns: 1fr;
   }
+
+  .skill-card-title{
+    font-size: 15px;
+  }
+
+  .project-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .project-arrow{
+    display: none;
+  }
+
+  .project-thumb{
+    width: 100%;
+    height: 200px;
+  }
+
+  .exp-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .exp-arrow{
+    display: none;
+  }
+
+  .section-bg-text{
+    font-size: 50px;
+    color: #18161600;
+  }
 }
