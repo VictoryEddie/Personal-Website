@@ -106,29 +106,51 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
-      const subject = encodeURIComponent(`Project Inquiry from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nBudget: ${budget}\n\nMessage:\n${message}`);
-      const mailtoLink = `mailto:viceddie124@gmail.com?subject=${subject}&body=${body}`;
+      // Open WhatsApp synchronously 
+      const waText = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nBudget: ${budget}\n\n${message}`);
+      const waLink = `https://wa.me/2349130635266?text=${waText}`;
+      window.open(waLink, '_blank');
 
-      setTimeout(() => {
-        window.location.href = mailtoLink;
+      showToast("Sending email...", "success");
 
-        showToast("Message prepared! ✅", "success");
-        submitBtn.innerText = 'Redirecting...';
-        submitBtn.style.background = '#4CAF50';
-        submitBtn.style.opacity = '1';
+      // Send Email via EmailJS
+      if (typeof emailjs !== 'undefined') {
+        emailjs.send("service_al83kmj", "template_5wkj4dl", {
+          name: name,
+          email: email,
+          budget: budget,
+          message: message
+        }, "hvJxZu9tebkJrh45Y").then(
+          (response) => {
+            console.log('EmailJS Success!', response.status, response.text);
+            showToast("Email Sent! ✅", "success");
 
-        form.reset();
+            setTimeout(() => {
+              form.reset();
+              submitBtn.innerText = originalText;
+              submitBtn.style.background = '';
+              submitBtn.disabled = false;
+              const modal = form.closest('.modal-overlay');
+              if (modal) closeModal();
+            }, 2000);
+          },
+          (err) => {
+            const errorMsg = err.text || err.message || JSON.stringify(err);
+            showToast("EmailJS failed: " + errorMsg, "error");
+            console.error("EmailJS details:", err);
 
-        setTimeout(() => {
-          submitBtn.innerText = originalText;
-          submitBtn.style.background = '';
-          submitBtn.disabled = false;
-
-          const modal = form.closest('.modal-overlay');
-          if (modal) closeModal();
-        }, 3000);
-      }, 1000);
+            submitBtn.innerText = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+          }
+        );
+      } else {
+        showToast("EmailJS didn't load from CDN.", "error");
+        console.error("EmailJS script not loaded.");
+        submitBtn.innerText = originalText;
+        submitBtn.style.background = '';
+        submitBtn.disabled = false;
+      }
     });
   };
 
