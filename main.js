@@ -1,7 +1,3 @@
-/* =============================================
-   SAWAD - Portfolio Clone | Interactions
-   ============================================= */
-
 document.addEventListener('DOMContentLoaded', () => {
 
   // 1. FADE-UP ANIMATIONS (Intersection Observer)
@@ -40,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toastContainer.appendChild(toast);
 
-    // Animate in
     setTimeout(() => toast.classList.add('show'), 10);
 
     const removeToast = () => {
@@ -50,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toast.querySelector('.toast-close').addEventListener('click', removeToast);
 
-    // Auto remove
     setTimeout(removeToast, 5000);
   };
 
@@ -59,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Clear previous errors
       form.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
       form.querySelectorAll('.error-tooltip').forEach(h => h.remove());
 
@@ -78,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const group = input.parentElement;
         group.classList.add('error');
 
-        // Create Tooltip Structure (matching user screenshot)
         const tooltip = document.createElement('div');
         tooltip.className = 'error-tooltip';
         tooltip.innerHTML = `
