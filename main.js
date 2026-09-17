@@ -202,13 +202,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = '1';
   });
 
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const rawPath = window.location.pathname.replace(/\/$/, '') || '/';
+  const pageName = rawPath.split('/').pop().replace(/\.html$/, '') || 'index';
   const navLinks = document.querySelectorAll('.nav-link');
 
   navLinks.forEach(link => {
-    const linkPath = link.getAttribute('href');
-    if (linkPath === currentPath) link.classList.add('active');
-    else link.classList.remove('active');
+    const rawHref = link.getAttribute('href') || '';
+    const linkName = rawHref.replace(/^\//, '').replace(/\/$/, '').replace(/\.html$/, '') || 'index';
+    if (linkName === pageName || (pageName === 'index' && (rawHref === '/' || rawHref === 'index.html' || rawHref === ''))) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
   });
 
   // 6. THEME TOGGLE
@@ -238,6 +243,134 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('theme', next);
       applyTheme(next);
     });
+  }
+
+  // 7. PROJECTS JSON LOADER + DETAIL MODAL
+  const projectsList = document.getElementById('projects-list');
+  const projectModal = document.getElementById('projectModal');
+  const closeProjectModalBtn = document.getElementById('closeProjectModal');
+
+  if (projectsList) {
+    const arrowSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>`;
+
+    const openProjectModal = (project) => {
+      const img = document.getElementById('projectModalImg');
+      const title = document.getElementById('projectModalTitle');
+      const tags = document.getElementById('projectModalTags');
+      const desc = document.getElementById('projectModalDesc');
+      const link = document.getElementById('projectModalLink');
+      const badge = document.getElementById('projectModalBadge');
+
+      img.src = project.image;
+      img.alt = project.name;
+      title.textContent = project.name;
+      link.href = project.url;
+
+      // Render tags as pills
+      tags.innerHTML = project.tags.map(t => `<span class="project-modal-tag">${t}</span>`).join('');
+
+      // Render description — preserve newlines as paragraph breaks
+      const paragraphs = project.description.split('\n\n').filter(p => p.trim());
+      desc.innerHTML = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+
+      // Featured badge
+      badge.style.display = project.featured ? 'inline-flex' : 'none';
+
+      projectModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      projectModal.scrollTop = 0;
+      const modalBody = projectModal.querySelector('.project-modal-body');
+      if (modalBody) modalBody.scrollTop = 0;
+    };
+
+    const closeProjectModal = () => {
+      projectModal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    if (closeProjectModalBtn) {
+      closeProjectModalBtn.addEventListener('click', closeProjectModal);
+    }
+
+    if (projectModal) {
+      projectModal.addEventListener('click', (e) => {
+        if (e.target === projectModal) closeProjectModal();
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModal && projectModal.classList.contains('active')) {
+        closeProjectModal();
+      }
+    });
+
+    const renderProjects = (projects) => {
+      // Featured projects float to top, then rest in order
+      const sorted = [...projects].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+      projectsList.innerHTML = sorted.map((project, i) => {
+        // Extract preview text (uses mini-description if defined, otherwise first sentence)
+        const firstSentence = project.description.split(/(?<=[.!?])\s/)[0] || project.description;
+        const preview = project['mini-description'] || (
+          firstSentence.length < project.description.length
+            ? firstSentence.replace(/[.!?]$/, '') + '…'
+            : firstSentence
+        );
+
+        return `
+        <div
+          class="project-item fade-up"
+          role="button"
+          tabindex="0"
+          aria-label="View details for ${project.name}"
+          data-index="${i}"
+          style="transition-delay: ${i * 0.05}s; cursor: pointer;"
+        >
+          <div class="project-thumb">
+            <img src="${project.image}" alt="${project.name}" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <h3 class="project-name">
+              ${project.name}
+              ${project.featured ? '<span class="project-featured-star" title="Featured project">★</span>' : ''}
+            </h3>
+            <p class="project-tag">${project.tags.join(' · ')}</p>
+            <p class="project-preview">${preview}</p>
+          </div>
+          <div class="project-arrow">${arrowSVG}</div>
+        </div>
+      `}).join('');
+
+      // Re-observe new fade-up elements
+      projectsList.querySelectorAll('.fade-up').forEach(el => {
+        fadeUpObserver.observe(el);
+      });
+
+      // Attach click + keyboard handlers
+      projectsList.querySelectorAll('.project-item').forEach((card, i) => {
+        const project = sorted[i];
+        card.addEventListener('click', () => openProjectModal(project));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openProjectModal(project);
+          }
+        });
+      });
+    };
+
+    fetch('./projects.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load projects.json');
+        return res.json();
+      })
+      .then(projects => {
+        renderProjects(projects);
+      })
+      .catch(err => {
+        console.error('Projects failed to load:', err);
+        projectsList.innerHTML = `<p style="color: var(--text-muted); padding: 24px;">Could not load projects. Please refresh.</p>`;
+      });
   }
 
 });

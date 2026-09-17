@@ -1,0 +1,88 @@
+[
+  {
+    "name": "Edu Results",
+    "image": "./images/eduResults.png",
+    "url": "https://edu-results.vercel.app/",
+    "tags": [
+      "Web Development",
+      "Portal"
+    ],
+    "featured": true,
+    "mini-description": "A featured academic results portal built with three dedicated role-based portals.",
+    "description": "EduResults is an academic result portal designed to replace manual record books and printed results sheets. The platform features three dedicated access portals: administrators manage global school records, teachers submit term scores, parents monitor their wards progress and check their results.  \n\nBuilt with strict role separation and accessibility standards, the system runs reliably even on older phones and low-bandwidth connections."
+  },
+  {
+    "name": "Terms of Service",
+    "image": "./images/TermsOfService.png",
+    "url": "https://term-of-services.vercel.app/",
+    "tags": [
+      "Web App",
+      "SaaS",
+      "Productivity"
+    ],
+    "featured": true,
+    "mini-description": "Extracts hidden contract risks and privacy traps in seconds using AI analysis.",
+    "description": "Terms of Service Analyser is an AI-powered utility that audits dense user agreements instantly. Consumers and business owners rarely read 40-page terms, exposing themselves to liability waivers, forced arbitration, and hidden data harvesting.\n\nUsers paste any contract text to receive an immediate safety score alongside color-coded risk flags. The application translates dense legal terms into plain bullet points that anyone can understand."
+  },
+  {
+    "name": "Flavour Index",
+    "image": "./images/flavour-index.png",
+    "url": "https://flavour-index.vercel.app/",
+    "tags": [
+      "Web Design",
+      "Landing Page"
+    ],
+    "featured": false,
+    "mini-description": "Fast recipe discovery that keeps users searching and cooking without page reloads.",
+    "description": "Flavour Index is an interactive culinary web application built for recipe discovery and meal planning. Most recipe websites frustrate users with slow page refreshes and cluttered layouts. This single-page application solves that with instant client-side search across ingredients, meal categories, and prep times.\n\nIt features dynamic filter tags, custom loading skeletons to prevent visual layout shifts, and mobile-friendly preparation cards."
+  },
+  {
+    "name": "Olive Extraordinaire",
+    "image": "./images/extraordinaire.png",
+    "url": "https://olive-extraordinaire.vercel.app/",
+    "tags": [
+      "Web Design",
+      "Landing Page",
+      "Luxury"
+    ],
+    "featured": false,
+    "mini-description": "Converts high-ticket salon bookings and student enrollments through clear visual authority.",
+    "description": "Olive Extraordinaire is a commercial website built for a luxury hair artistry brand and professional academy in Nigeria. Premium beauty businesses often lose revenue by relying solely on social media DMs to close sales.\n\nThis platform fixes that problem by providing a structured booking flow. Prospective clients can review signature wigging techniques, compare hair ventilation packages, and schedule appointments directly. The layout uses warm gold accents, high-contrast imagery, and lightweight code to keep page speed fast on mobile devices."
+  },
+  {
+    "name": "Mood. Cafe",
+    "image": "./images/MoodScreenGrab.png",
+    "url": "https://mood-cafe-eight.vercel.app/",
+    "tags": [
+      "Web Design",
+      "Landing Page"
+    ],
+    "featured": false,
+    "mini-description": "Turns casual website visitors into confirmed table bookings and walk-in foot traffic.",
+    "description": "Mood Cafe is a conversion-focused landing page for a specialty coffee shop. Independent cafes regularly lose customers to competitors when their online presence lacks a clear menu, transparent prices, or simple reservation options.\n\nThis website addresses all three friction points with an interactive mobile menu, verified customer reviews, operating hours, and a direct table reservation form."
+  },
+  {
+    "name": "Cafe Noir.",
+    "image": "./images/NoirScreenGrab.png",
+    "url": "https://cafe-noir-sigma.vercel.app/",
+    "tags": [
+      "Web Design",
+      "Landing Page"
+    ],
+    "featured": false,
+    "mini-description": "High-contrast digital storefront that builds brand prestige and captures reservations.",
+    "description": "Cafe Noir is a digital storefront created for an upscale London coffee brand and roastery lounge. Using high-contrast typography and deep black tones, the website gives the brand an exclusive look that sets it apart from generic local coffee shops. \n\nThe layout presents the roastery philosophy, displays Google review ratings, and guides visitors straight to an online table reservation module."
+  },
+  {
+    "name": "Portfolio Template",
+    "image": "./images/portfolio-Template.png",
+    "url": "https://portfolio-website-eta-lake-89.vercel.app/",
+    "tags": [
+      "Web Design",
+      "Template"
+    ],
+    "featured": false,
+    "mini-description": "Sub-second page loads that convert hiring managers and freelance inquiries quickly.",
+    "description": "a zero-dependency portfolio template designed for developers, technical freelancers, and consultants. Bloated portfolio websites built on heavy frameworks often suffer from slow load times that cost developers opportunities. \n\nThis template uses semantic HTML, custom CSS, and vanilla JavaScript to score top Core Web Vitals marks. It guides recruiters straight through your background, technical skills, and featured projects to a working inquiry form."
+  }
+]
