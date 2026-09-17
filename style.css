@@ -1408,4 +1408,21 @@ option {
     font-size: 22px;
     padding-right: 0;
   }
+
+  /* Thicker, high-visibility close button for mobile screens */
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    top: 14px;
+    right: 14px;
+    border: 2px solid var(--accent);
+    background: rgba(255, 108, 56, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--accent);
+    font-size: 24px;
+    font-weight: 800;
+    -webkit-text-stroke: 1px var(--accent);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 108, 56, 0.3);
+  }
 }
