@@ -1388,7 +1388,7 @@ option {
 @media (max-width: 768px) {
   .project-modal-container {
     flex-direction: column;
-    max-height: calc(92vh - 32px);
+    max-height: calc(90vh - 32px);
     align-self: flex-end;
     border-radius: 0;
     margin: 0;
