@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
 
 *,
 *::before,
@@ -17,7 +17,7 @@
   --text-secondary: rgb(153, 153, 153);
   --text-muted: #666;
   --text-subtitle: rgba(182, 180, 189, 0.2);
-  --accent: #FF6C38;
+  --accent: #ff6c38;
   --accent-hover: #ff8560;
   --accent-green: #c5f135;
   --border: rgba(255, 255, 255, 0.08);
@@ -46,8 +46,8 @@
   --text-muted: #676767;
   --text-subtitle: rgba(21, 19, 18, 0.12);
   --accent-green: #89a800;
-  --border: rgba(0, 0, 0, 0.10);
-  --border-hover: rgba(0, 0, 0, 0.20);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.2);
   --shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
   --nav-bg: rgba(245, 242, 238, 0.88);
   --profile-card-bg: #1e1c1a;
@@ -60,13 +60,19 @@
 
 html {
   scroll-behavior: smooth;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text-primary);
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Poppins",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -109,7 +115,10 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: background 0.2s ease, transform 0.15s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    color 0.2s ease;
   color: var(--text-secondary);
   cursor: pointer;
 }
@@ -140,7 +149,10 @@ img {
   border: none;
   cursor: pointer;
   color: var(--text-secondary);
-  transition: background 0.2s ease, color 0.2s ease, transform 0.3s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.3s ease;
   margin-left: 4px;
   padding: 0;
 }
@@ -165,7 +177,9 @@ img {
 }
 
 body {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* =============================================
@@ -223,7 +237,6 @@ body {
   height: 100%;
   object-fit: cover;
 }
-
 
 .profile-deco-svg {
   position: absolute;
@@ -454,6 +467,7 @@ body {
   line-height: 1;
   user-select: none;
   white-space: nowrap;
+  margin: 1em 0; /* h2 default margin is 0.83em, this keeps the old <p> spacing */
 }
 
 [data-theme="light"] .section-bg-text {
@@ -608,7 +622,9 @@ body {
 
 .exp-arrow {
   color: rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .exp-item:hover .exp-arrow {
@@ -652,7 +668,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
   color: var(--accent);
   transition: all 0.3s ease;
 }
@@ -673,6 +688,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .tool-work {
@@ -806,7 +822,7 @@ body {
   border-radius: 12px;
   padding: 16px 20px;
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   outline: none;
   transition: all 0.3s ease;
@@ -996,7 +1012,9 @@ option {
 .fade-up {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition:
+    opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .fade-up.visible {
@@ -1144,7 +1162,6 @@ option {
    RESPONSIVE
    ============================================= */
 @media (max-width: 1024px) {
-
   .hero,
   .page-header {
     flex-direction: column;
@@ -1179,7 +1196,6 @@ option {
     letter-spacing: -2px;
     font-size: 55px;
     color: rgba(255, 255, 255, 0.7);
-    
   }
 
   .form-row {
@@ -1246,8 +1262,12 @@ option {
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* =============================================
@@ -1423,6 +1443,8 @@ option {
     font-size: 24px;
     font-weight: 800;
     -webkit-text-stroke: 1px var(--accent);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), 0 0 10px rgba(255, 108, 56, 0.3);
+    box-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.35),
+      0 0 10px rgba(255, 108, 56, 0.3);
   }
 }
